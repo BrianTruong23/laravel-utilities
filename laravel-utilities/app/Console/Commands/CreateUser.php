@@ -17,8 +17,7 @@ class CreateUser extends Command
     protected $signature = 'laits:create-user';
 
     /**
-     * This command will create a new user. The command will ask for a person's email address, their name and their password. 
-     * Email and name are required. Password is optional. It then reports whether the attempt is successfull or not. 
+     * Include a description for the console command
      *
      * @var string
      */
@@ -26,6 +25,8 @@ class CreateUser extends Command
 
     /**
      * Execute the console command.
+     * This command will create a new user. The command will ask for a person's email address, their name and their password. 
+     * Email and name are required. Password is optional. It then reports whether the attempt is successfull or not. 
      */
     public function handle()
     {
@@ -35,7 +36,7 @@ class CreateUser extends Command
 
         // Ask for user's password and generate randomly if not entered 
 
-        $password = $this->secret("Generate password for this user. If none entered, generate the password randomly.");
+        $password = $this->secret("What's the user's password? (Leave blank to generate a random password.)");
 
         if (!$password){
             $password = Str::random(12);

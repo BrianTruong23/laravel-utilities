@@ -1,0 +1,5 @@
+{
+    "require": {
+        "longhornopen/canvas-api": "^1.0"
+    }
+}
