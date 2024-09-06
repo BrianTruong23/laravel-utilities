@@ -141,7 +141,12 @@ class ReportCourseRetention extends Command{
      private function checkCourseValid($courseID){
       
         $api_host = 'utexas.instructure.com';
-        $access_key = '1017~TneTkZR9XVQBKuATuZyZw34mExuJm6RLXhrvXcTvE3aew7JxktVzU7AN87P7ecrE';
+       # Check if 'access_key' is present in environment variables
+        if (getenv('access_key')) {
+            $access_key = getenv('access_key');
+        } else {
+            $access_key = null; // Or assign a default value if needed
+        } 
         $api = new CanvasApiClient($api_host, $access_key);
 
         try{
