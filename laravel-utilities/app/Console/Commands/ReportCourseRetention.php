@@ -98,9 +98,9 @@ class ReportCourseRetention extends Command{
      */
      private function getTables()
      {
-         $tables = DB::select("SELECT name FROM sqlite_master WHERE type='table' ORDER BY name;");
+         $tables = Schema::getTables();
          return array_map(function($table) {
-             return $table->name;
+             return $table['name'];
          }, $tables);
      }
 
@@ -145,6 +145,7 @@ class ReportCourseRetention extends Command{
         if (getenv('access_key')) {
             $access_key = getenv('access_key');
         } else {
+            $this->error("Failed to access the Canvas Course API: The access key is missing from the environment variable. Please ensure that 'access_key' is properly set up.");
             $access_key = null; // Or assign a default value if needed
         } 
         $api = new CanvasApiClient($api_host, $access_key);
